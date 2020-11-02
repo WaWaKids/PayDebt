@@ -1,4 +1,4 @@
-package android.wawakidss.paydebt.ui.dashboard;
+package android.wawakidss.paydebt.ui.accounts;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,17 +13,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-public class DashboardFragment extends Fragment {
+public class AccountsFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private AccountsViewModel mAccountsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        mAccountsViewModel =
+                ViewModelProviders.of(this).get(AccountsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_accounts, container, false);
+        final TextView textView = root.findViewById(R.id.text_accounts);
+        mAccountsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
