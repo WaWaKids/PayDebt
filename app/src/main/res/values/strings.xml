@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">PayDebt</string>
-    <string name="title_accounts">Счета</string>
-    <string name="title_people">Люди</string>
+    <string name="i_owe">Я должен</string>
+    <string name="owe_to_me">Мне должны</string>
+    <string name="what_to_repay">Сколько(что) вернуть</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="whom_to_repay">Кому вернуть</string>
+    <string name="i_must_repay">Я должен отдать:</string>
+    <string name="once">Один раз</string>
+    <string name="few_times">Несколько раз</string>
+    <string name="date">Задать дату</string>
+    <string name="text_when_to_repay">Когда вернуть</string>
+    <string name="first_repayment_date">Дата первого платежа</string>
+    <string name="comment">Комментарий</string>
 </resources>
