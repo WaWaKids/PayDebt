@@ -1,6 +1,7 @@
 package android.wawakidss.paydebt.accounts;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.wawakidss.paydebt.R;
@@ -17,8 +18,10 @@ import java.util.Calendar;
 public class AddDebtActivity extends AppCompatActivity {
 
     Button dateButton;
+    RadioGroup period;
     private int year, month, day;
     TextView textFirstRepayment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,9 @@ public class AddDebtActivity extends AppCompatActivity {
 
         ImageView confirmButton = (ImageView)findViewById(R.id.button_confirm);
         textFirstRepayment = (TextView)findViewById(R.id.text_first_repayment);
+        period = (RadioGroup)findViewById(R.id.period);
         textFirstRepayment.setText(R.string.text_when_to_repay);
+        period.setVisibility(View.GONE);
         dateButton = (Button)findViewById(R.id.dateButton);
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,12 +61,21 @@ public class AddDebtActivity extends AppCompatActivity {
                 switch (checkedId) {
                     case R.id.once_only:
                         textFirstRepayment.setText(R.string.text_when_to_repay);
+                        period.setVisibility(View.GONE);
                         break;
 
                     case R.id.continuous:
                         textFirstRepayment.setText(R.string.first_repayment_date);
+                        period.setVisibility(View.VISIBLE);
                         break;
                 }
+            }
+        });
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AddDebtActivity.this, AccountsActivity.class));
             }
         });
     }

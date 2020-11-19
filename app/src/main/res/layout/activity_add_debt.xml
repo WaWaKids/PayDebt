@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="70dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,17 +105,50 @@
                 app:layout_constraintTop_toBottomOf="@id/radioGroup1"/>
 
             <Button android:id="@+id/dateButton"
-                android:layout_width="match_parent"
+                android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 android:text="@string/date"
                 android:textSize="15dp"/>
 
+            <TextView
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:textSize="19dp"
+                android:text="@string/period"
+                android:gravity="center"/>
 
+            <RadioGroup
+                android:id="@+id/period"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/week"
+                    android:layout_width="140dp"
+                    android:layout_height="65dp"
+                    android:checked="true"
+                    android:textSize="17dp"
+                    android:text="@string/week" />
+
+                <RadioButton
+                    android:id="@+id/month"
+                    android:layout_width="140dp"
+                    android:layout_height="65dp"
+                    android:textSize="17dp"
+                    android:text="@string/month" />
+
+                <RadioButton
+                    android:id="@+id/year"
+                    android:layout_width="140dp"
+                    android:layout_height="65dp"
+                    android:textSize="17dp"
+                    android:text="@string/year" />
+
+            </RadioGroup>
 
         </LinearLayout>
     </ScrollView>
-
-
 
     <ImageView
         android:id="@+id/button_confirm"
