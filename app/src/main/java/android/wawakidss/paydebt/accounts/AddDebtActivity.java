@@ -3,6 +3,7 @@ package android.wawakidss.paydebt.accounts;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.wawakidss.paydebt.R;
 import android.widget.Button;
@@ -17,17 +18,17 @@ import java.util.Calendar;
 
 public class AddDebtActivity extends AppCompatActivity {
 
+    private static final String TAG = "AddDebtActivity";
     Button dateButton;
     RadioGroup period;
     private int year, month, day;
     TextView textFirstRepayment;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_debt);
-
+        Log.d(TAG, "launching the activity");
         ImageView confirmButton = (ImageView)findViewById(R.id.button_confirm);
         textFirstRepayment = (TextView)findViewById(R.id.text_first_repayment);
         period = (RadioGroup)findViewById(R.id.period);
@@ -75,6 +76,7 @@ public class AddDebtActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "saving the info, going back to AccountsActivity");
                 startActivity(new Intent(AddDebtActivity.this, AccountsActivity.class));
             }
         });
