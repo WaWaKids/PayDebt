@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class Debt {
 
-    private UUID id;
+    private UUID uuid;
     private String debt;
     private Calendar takenAt;
     private String comment;
@@ -23,7 +23,7 @@ public class Debt {
     private Period period;
 
     public Debt(Calendar takenAt, String debt, String comment, String agent) {
-        id = UUID.randomUUID();
+        uuid = UUID.randomUUID();
         this.takenAt = takenAt;
         this.comment = comment;
         this.agent = agent;
