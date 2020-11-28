@@ -16,6 +16,7 @@ public class Debt {
     private Calendar takenAt;
     private String comment;
     private String agent;
+    private String attachment;
     public enum Period {
         WEEK, MONTH, YEAR
     }
