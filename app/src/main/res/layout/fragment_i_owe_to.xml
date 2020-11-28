@@ -11,6 +11,5 @@
         android:layout_height="wrap_content"
         android:text="Работает"
         android:textSize="90dp"/>
-
-
+    
 </FrameLayout>

@@ -52,10 +52,10 @@
                 android:hint="@string/what_to_repay" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/whom_to_repay"
+                android:id="@+id/agent"
                 android:layout_width="400dp"
                 android:layout_height="65dp"
-                android:hint="@string/whom_to_repay" />
+                android:hint="@string/agent" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="400dp"
