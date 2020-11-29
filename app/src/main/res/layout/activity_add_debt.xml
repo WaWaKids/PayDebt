@@ -46,7 +46,7 @@
             </RadioGroup>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/what_to_repay"
+                android:id="@+id/debt"
                 android:layout_width="400dp"
                 android:layout_height="65dp"
                 android:hint="@string/what_to_repay" />

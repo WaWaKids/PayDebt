@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.Calendar;
 
 public class AddDebtActivity extends AppCompatActivity {
@@ -21,6 +23,9 @@ public class AddDebtActivity extends AppCompatActivity {
     private static final String TAG = "AddDebtActivity";
     Button dateButton;
     RadioGroup period;
+    TextInputEditText debt;
+    TextInputEditText agent;
+    TextInputEditText comment;
     private int year, month, day;
     TextView textFirstRepayment;
 
@@ -33,6 +38,9 @@ public class AddDebtActivity extends AppCompatActivity {
         textFirstRepayment = (TextView)findViewById(R.id.text_first_repayment);
         period = (RadioGroup)findViewById(R.id.period);
         textFirstRepayment.setText(R.string.text_when_to_repay);
+        debt = (TextInputEditText)findViewById(R.id.debt);
+        agent = (TextInputEditText)findViewById(R.id.agent);
+        comment = (TextInputEditText)findViewById(R.id.comment);
         period.setVisibility(View.GONE);
         dateButton = (Button)findViewById(R.id.dateButton);
         dateButton.setOnClickListener(new View.OnClickListener() {
