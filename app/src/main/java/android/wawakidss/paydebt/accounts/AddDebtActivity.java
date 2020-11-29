@@ -23,6 +23,7 @@ public class AddDebtActivity extends AppCompatActivity {
     private static final String TAG = "AddDebtActivity";
     Button dateButton;
     RadioGroup period;
+    ImageView confirmButton;
     TextInputEditText debt;
     TextInputEditText agent;
     TextInputEditText comment;
@@ -34,7 +35,7 @@ public class AddDebtActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_debt);
         Log.d(TAG, "launching the activity");
-        ImageView confirmButton = (ImageView)findViewById(R.id.button_confirm);
+        confirmButton = (ImageView)findViewById(R.id.button_confirm);
         textFirstRepayment = (TextView)findViewById(R.id.text_first_repayment);
         period = (RadioGroup)findViewById(R.id.period);
         textFirstRepayment.setText(R.string.text_when_to_repay);
