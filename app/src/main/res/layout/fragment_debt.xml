@@ -64,39 +64,6 @@
                 android:hint="@string/comment"/>
 
             <TextView
-                android:id="@+id/text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/i_must_repay"
-                android:textSize="19dp"
-                android:gravity="center"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"/>
-
-            <RadioGroup
-                android:id="@+id/radioGroup1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/once_only"
-                    android:layout_width="205dp"
-                    android:layout_height="65dp"
-                    android:checked="true"
-                    android:textSize="17dp"
-                    android:text="@string/once" />
-
-                <RadioButton
-                    android:id="@+id/continuous"
-                    android:layout_width="205dp"
-                    android:layout_height="65dp"
-                    android:textSize="17dp"
-                    android:text="@string/few_times" />
-
-            </RadioGroup>
-
-            <TextView
                 android:id="@+id/text_first_repayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +74,7 @@
             <Button android:id="@+id/dateButton"
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
-                android:text="@string/set_date"
+                android:text="@string/change_date"
                 android:textSize="15dp"/>
 
             <TextView

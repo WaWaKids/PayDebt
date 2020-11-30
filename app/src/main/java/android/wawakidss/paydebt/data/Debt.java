@@ -5,10 +5,12 @@ import android.icu.util.Calendar;
 import java.util.UUID;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class Debt {
 
     private UUID uuid;

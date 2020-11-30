@@ -7,11 +7,7 @@ import android.view.View;
 import android.wawakidss.paydebt.R;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabItem;
-import com.google.android.material.tabs.TabLayout;
 
 public class AccountsActivity extends AppCompatActivity {
 
@@ -31,7 +27,5 @@ public class AccountsActivity extends AppCompatActivity {
                 startActivity(new Intent(AccountsActivity.this, AddDebtActivity.class));
             }
         });
-
-
     }
 }

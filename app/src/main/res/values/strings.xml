@@ -8,7 +8,7 @@
     <string name="i_must_repay">Я должен отдать:</string>
     <string name="once">Один раз</string>
     <string name="few_times">Несколько раз</string>
-    <string name="date">Задать дату</string>
+    <string name="set_date">Задать дату</string>
     <string name="text_when_to_repay">Когда вернуть</string>
     <string name="first_repayment_date">Дата первого платежа</string>
     <string name="comment">Комментарий</string>
@@ -16,6 +16,5 @@
     <string name="week">Неделю</string>
     <string name="month">Месяц</string>
     <string name="year">Год</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="change_date">Изменить дату</string>
 </resources>

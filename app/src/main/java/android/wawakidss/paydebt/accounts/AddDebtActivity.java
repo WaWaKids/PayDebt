@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 public class AddDebtActivity extends AppCompatActivity {
@@ -27,8 +28,9 @@ public class AddDebtActivity extends AppCompatActivity {
     TextInputEditText debt;
     TextInputEditText agent;
     TextInputEditText comment;
-    private int year, month, day;
     TextView textFirstRepayment;
+    Calendar repayment;
+    Calendar today;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,22 +46,28 @@ public class AddDebtActivity extends AppCompatActivity {
         comment = (TextInputEditText)findViewById(R.id.comment);
         period.setVisibility(View.GONE);
         dateButton = (Button)findViewById(R.id.dateButton);
+        today = Calendar.getInstance();
+
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                year = c.get(Calendar.YEAR);
-                month = c.get(Calendar.MONTH);
-                day = c.get(Calendar.DAY_OF_MONTH);
+                repayment = Calendar.getInstance();
+                int year, month, day;
+                year = repayment.get(Calendar.YEAR);
+                month = repayment.get(Calendar.MONTH);
+                day = repayment.get(Calendar.DAY_OF_MONTH);
+                final long today = System.currentTimeMillis() - 1000;
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(AddDebtActivity.this,
+                final DatePickerDialog datePickerDialog = new DatePickerDialog(AddDebtActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                dateButton.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                                  int month, int day) {
+                                dateButton.setText(day + "-" + (month + 1) + "-" + year);
+                                repayment.set(year, month, day);
                             }
                         }, year, month, day);
+                datePickerDialog.getDatePicker().setMinDate(today);
                 datePickerDialog.show();
             }
         });
