@@ -12,9 +12,11 @@
     <string name="text_when_to_repay">Когда вернуть</string>
     <string name="first_repayment_date">Дата первого платежа</string>
     <string name="comment">Комментарий</string>
-    <string name="period">Периодичность платежа</string>
+    <string name="text_period">Периодичность платежа</string>
     <string name="week">Неделю</string>
     <string name="month">Месяц</string>
     <string name="year">Год</string>
     <string name="change_date">Изменить дату</string>
+    <string name="apply">Сохранить</string>
+    <string name="delete">Удалить</string>
 </resources>

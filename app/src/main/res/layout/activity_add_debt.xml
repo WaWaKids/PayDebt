@@ -48,18 +48,18 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/debt"
                 android:layout_width="400dp"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/input_text_height"
                 android:hint="@string/what_to_repay" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/agent"
                 android:layout_width="400dp"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/input_text_height"
                 android:hint="@string/agent" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="400dp"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/input_text_height"
                 android:id="@+id/comment"
                 android:hint="@string/comment"/>
 
@@ -68,10 +68,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/i_must_repay"
-                android:textSize="19dp"
+                android:textSize="22dp"
                 android:gravity="center"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="11dp"/>
 
             <RadioGroup
                 android:id="@+id/radioGroup1"
@@ -100,21 +99,24 @@
                 android:id="@+id/text_first_repayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="22dp"
                 android:gravity="center"
                 app:layout_constraintTop_toBottomOf="@id/radioGroup1"/>
 
-            <Button android:id="@+id/dateButton"
+            <Button
+                android:id="@+id/date_button"
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 android:text="@string/set_date"
                 android:textSize="15dp"/>
 
             <TextView
+                android:id="@+id/text_period"
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
-                android:textSize="19dp"
-                android:text="@string/period"
+                android:layout_marginTop="11dp"
+                android:textSize="22dp"
+                android:text="@string/text_period"
                 android:gravity="center"/>
 
             <RadioGroup
@@ -170,6 +172,5 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button_confirm" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

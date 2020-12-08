@@ -48,40 +48,73 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/debt"
                 android:layout_width="400dp"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/input_text_height"
                 android:hint="@string/what_to_repay" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/agent"
                 android:layout_width="400dp"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/input_text_height"
                 android:hint="@string/agent" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="400dp"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/input_text_height"
                 android:id="@+id/comment"
                 android:hint="@string/comment"/>
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/i_must_repay"
+                android:textSize="22dp"
+                android:gravity="center"
+                android:layout_marginTop="11dp"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroup1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/once_only"
+                    android:layout_width="205dp"
+                    android:layout_height="65dp"
+                    android:checked="true"
+                    android:textSize="17dp"
+                    android:text="@string/once" />
+
+                <RadioButton
+                    android:id="@+id/continuous"
+                    android:layout_width="205dp"
+                    android:layout_height="65dp"
+                    android:textSize="17dp"
+                    android:text="@string/few_times" />
+
+            </RadioGroup>
 
             <TextView
                 android:id="@+id/text_first_repayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="22dp"
                 android:gravity="center"
                 app:layout_constraintTop_toBottomOf="@id/radioGroup1"/>
 
-            <Button android:id="@+id/dateButton"
+            <Button android:id="@+id/date_button"
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
-                android:text="@string/change_date"
+                android:text="@string/set_date"
                 android:textSize="15dp"/>
 
             <TextView
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
-                android:textSize="19dp"
-                android:text="@string/period"
+                android:textSize="22dp"
+                android:layout_marginTop="11dp"
+                android:text="@string/text_period"
                 android:gravity="center"/>
 
             <RadioGroup
@@ -118,24 +151,47 @@
     </ScrollView>
 
     <ImageView
-        android:id="@+id/button_confirm"
-        android:layout_width="270dp"
+        android:id="@+id/button_delete"
+        android:layout_width="193dp"
         android:layout_height="45dp"
         android:text="@string/confirm"
         android:layout_marginBottom="20dp"
+        android:layout_marginStart="10dp"
         android:src="@drawable/button_confirm"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/confirm"
+        android:text="@string/delete"
         android:textSize="25dp"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@id/button_delete"
+        app:layout_constraintLeft_toLeftOf="@id/button_delete"
+        app:layout_constraintRight_toRightOf="@id/button_delete"
+        app:layout_constraintTop_toTopOf="@+id/button_delete" />
+
+    <ImageView
+        android:id="@+id/button_confirm"
+        android:layout_width="193dp"
+        android:layout_height="45dp"
+        android:text="@string/confirm"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/button_confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/apply"
+        android:textSize="25dp"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@id/button_confirm"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/button_confirm"
+        app:layout_constraintRight_toRightOf="@id/button_confirm"
         app:layout_constraintTop_toTopOf="@+id/button_confirm" />
 
 

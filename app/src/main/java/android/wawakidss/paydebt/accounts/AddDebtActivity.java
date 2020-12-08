@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.time.LocalDate;
 import java.util.Calendar;
 
 public class AddDebtActivity extends AppCompatActivity {
@@ -29,6 +28,7 @@ public class AddDebtActivity extends AppCompatActivity {
     TextInputEditText agent;
     TextInputEditText comment;
     TextView textFirstRepayment;
+    TextView textPeriod;
     Calendar repayment;
     Calendar today;
 
@@ -37,17 +37,18 @@ public class AddDebtActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_debt);
         Log.d(TAG, "launching the activity");
-        confirmButton = (ImageView)findViewById(R.id.button_confirm);
         textFirstRepayment = (TextView)findViewById(R.id.text_first_repayment);
         period = (RadioGroup)findViewById(R.id.period);
         textFirstRepayment.setText(R.string.text_when_to_repay);
         debt = (TextInputEditText)findViewById(R.id.debt);
         agent = (TextInputEditText)findViewById(R.id.agent);
         comment = (TextInputEditText)findViewById(R.id.comment);
+        textPeriod = (TextView)findViewById(R.id.text_period);
         period.setVisibility(View.GONE);
-        dateButton = (Button)findViewById(R.id.dateButton);
+        textPeriod.setVisibility(View.GONE);
         today = Calendar.getInstance();
 
+        dateButton = (Button)findViewById(R.id.date_button);
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +66,8 @@ public class AddDebtActivity extends AppCompatActivity {
                                                   int month, int day) {
                                 dateButton.setText(day + "-" + (month + 1) + "-" + year);
                                 repayment.set(year, month, day);
+                                String date = (new Integer(year).toString() + "-" + new Integer(month).toString() + "-" + new Integer(day).toString());
+                                Log.d(TAG, "setted date: " + date);
                             }
                         }, year, month, day);
                 datePickerDialog.getDatePicker().setMinDate(today);
@@ -80,16 +83,19 @@ public class AddDebtActivity extends AppCompatActivity {
                     case R.id.once_only:
                         textFirstRepayment.setText(R.string.text_when_to_repay);
                         period.setVisibility(View.GONE);
+                        textPeriod.setVisibility(View.GONE);
                         break;
 
                     case R.id.continuous:
                         textFirstRepayment.setText(R.string.first_repayment_date);
                         period.setVisibility(View.VISIBLE);
+                        textPeriod.setVisibility(View.VISIBLE);
                         break;
                 }
             }
         });
 
+        confirmButton = (ImageView)findViewById(R.id.button_confirm);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

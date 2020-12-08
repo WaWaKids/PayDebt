@@ -15,7 +15,16 @@ public class DebtBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL("create table " + DebtDbSchema.DebtTable.NAME + "(" +
+                " _id integer primary key autoincrement, " +
+                DebtDbSchema.DebtTable.Cols.UUID + ", " +
+                DebtDbSchema.DebtTable.Cols.ATTACHMENT + ", " +
+                DebtDbSchema.DebtTable.Cols.DEBT + ", " +
+                DebtDbSchema.DebtTable.Cols.AGENT + ", " +
+                DebtDbSchema.DebtTable.Cols.DATE + ", " +
+                DebtDbSchema.DebtTable.Cols.REPAYMENT + ", " +
+                DebtDbSchema.DebtTable.Cols.PERIOD +
+                ")");
     }
 
     @Override
