@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/item_list_fragment">
+
+    <fragment
+        android:id="@+id/item_list_fragment"
+        android:name="com.wawakidss.paydebt.DebtListFragment"
+        android:label="@string/debts_list"
+        tools:layout="@layout/fragment_debt_list">
+        <action
+            android:id="@+id/action_debtListFragment_to_NewDebtFragment"
+            app:destination="@id/debt_fragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/debt_fragment"
+        android:name="com.wawakidss.paydebt.NewDebtFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_new_debt">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="debt_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_NewDebtFragment_to_DebtListFragment"
+            app:destination="@id/item_list_fragment"/>
+    </fragment>
+
+</navigation>
