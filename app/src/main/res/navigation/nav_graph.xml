@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/item_list_fragment"
         android:name="com.wawakidss.paydebt.DebtListFragment"
-        android:label="@string/debts_list"
+        android:label="@string/debts_list_title"
         tools:layout="@layout/fragment_debt_list">
         <action
             android:id="@+id/action_debtListFragment_to_NewDebtFragment"

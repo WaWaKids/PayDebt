@@ -9,10 +9,9 @@
 
     <TextView
         android:id="@+id/item_name"
+        style="@style/Widget.PayDebt.ListItemTitle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:textSize="@dimen/item_list_label_text_size"
+        android:fontFamily="sans-serif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,18 +19,16 @@
 
     <TextView
         android:id="@+id/debt_ownership"
+        style="@style/Widget.PayDebt.ListItem"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/item_list_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_name"
         tools:text="@string/owes_to_me" />
 
     <TextView
         android:id="@+id/object_of_debt"
+        style="@style/Widget.PayDebt.ListItem"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/item_list_text_size"
         android:layout_marginStart="5dp"
         app:layout_constraintEnd_toEndOf="@+id/item_name"
         app:layout_constraintStart_toEndOf="@+id/debt_ownership"

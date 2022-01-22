@@ -8,14 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.wawakidss.paydebt.data.Debt
 import com.wawakidss.paydebt.databinding.FragmentDebtListBinding
 
 
 class DebtListFragment : Fragment() {
 
     private lateinit var binding: FragmentDebtListBinding
-    private lateinit var debt: Debt
 
     private val viewModel: DebtsViewModel by activityViewModels {
         DebtsViewModelFactory(
@@ -37,7 +35,7 @@ class DebtListFragment : Fragment() {
         val adapter = DebtListAdapter {
 
             this.findNavController().navigate(
-                DebtListFragmentDirections.actionDebtListFragmentToNewDebtFragment(getString(R.string.debt_details), it.id)
+                DebtListFragmentDirections.actionDebtListFragmentToNewDebtFragment(getString(R.string.debt_details_title), it.id)
             )
         }
 

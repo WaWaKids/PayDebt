@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PayDebt</string>
+    <string name="i_owe">Я должен</string>
+    <string name="owes_to_me">Должен мне</string>
+    <string name="name">Имя</string>
+    <string name="due_date">Дата взятия долга</string>
+    <string name="repayment_date">Дата возврата долга</string>
+    <string name="comment">Комментарий</string>
+    <string name="object_of_debt">Объект долга</string>
+    <string name="debts_list_title">Список Долгов</string>
+    <string name="add_fragment_title">Добавить Долг</string>
+    <string name="edit_fragment_title">Редактировать долг</string>
+    <string name="debt_details_title">Детали Долга</string>
+    <string name="save">Сохранить</string>
+    <string name="delete">Удалить</string>
+    <string name="i_owe_him">Я должен ему</string>
+    <string name="entry_invalid">Пожалуйста, введите имя и объект долга</string>
+    <string name="delete_question">Долг будет удален. Вы уверены?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+</resources>

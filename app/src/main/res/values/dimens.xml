@@ -7,5 +7,5 @@
     <dimen name="margin">16dp</dimen>
     <dimen name="edit_text_width">0dp</dimen>
     <dimen name="item_list_text_size">16sp</dimen>
-    <dimen name="item_list_label_text_size">21sp</dimen>
+    <dimen name="item_list_title_text_size">21sp</dimen>
 </resources>

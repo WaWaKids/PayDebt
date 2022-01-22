@@ -24,7 +24,7 @@
             android:id="@+id/name_label"
             android:layout_width="@dimen/edit_text_width"
             android:layout_height="wrap_content"
-            android:hint="@string/debtors_name"
+            android:hint="@string/name"
             android:layout_marginStart="@dimen/margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/icon_name"
