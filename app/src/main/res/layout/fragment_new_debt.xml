@@ -10,13 +10,24 @@
         android:layout_height="match_parent"
         android:padding="@dimen/padding">
 
+        <ImageView
+            android:id="@+id/icon_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_name"
+            app:layout_constraintBottom_toBottomOf="@+id/name_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/name_label" />
+
         <RadioGroup
             android:id="@+id/debt_option"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkedButton="@id/option_owes_to_me"
             android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/margin"
+            app:layout_constraintStart_toEndOf="@+id/icon_name"
             app:layout_constraintTop_toBottomOf="@+id/name_label">
 
             <RadioButton
@@ -32,13 +43,24 @@
                 android:text="@string/i_owe_him" />
         </RadioGroup>
 
+        <ImageView
+            android:id="@+id/icon_object_of_debt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_object_of_debt"
+            app:layout_constraintBottom_toBottomOf="@+id/object_of_debt_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/object_of_debt_label" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/object_of_debt_label"
             android:layout_width="@dimen/edit_text_width"
             android:layout_height="wrap_content"
             android:hint="@string/object_of_debt"
+            android:layout_marginStart="@dimen/margin"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon_object_of_debt"
             app:layout_constraintTop_toBottomOf="@+id/debt_option">
 
             <EditText
@@ -53,8 +75,9 @@
             android:layout_width="@dimen/edit_text_width"
             android:layout_height="wrap_content"
             android:hint="@string/debtors_name"
+            android:layout_marginStart="@dimen/margin"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon_name"
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
@@ -64,14 +87,25 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ImageView
+            android:id="@+id/icon_due_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_due_date"
+            app:layout_constraintBottom_toBottomOf="@+id/due_date_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/due_date_label" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/due_date_label"
             android:layout_width="@dimen/edit_text_width"
             android:layout_height="wrap_content"
-            android:hint="@string/due_date"
             android:layout_marginTop="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:hint="@string/due_date"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon_due_date"
             app:layout_constraintTop_toBottomOf="@+id/object_of_debt_label">
 
             <EditText
@@ -81,14 +115,25 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ImageView
+            android:id="@+id/icon_repayment_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_repayment_date"
+            app:layout_constraintBottom_toBottomOf="@+id/repayment_date_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/repayment_date_label" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/repayment_date_label"
             android:layout_width="@dimen/edit_text_width"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
             android:hint="@string/repayment_date"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon_repayment_date"
             app:layout_constraintTop_toBottomOf="@+id/due_date_label">
 
             <EditText
@@ -98,14 +143,25 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ImageView
+            android:id="@+id/icon_comemnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_comment"
+            app:layout_constraintBottom_toBottomOf="@+id/comment_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/comment_label" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/comment_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin"
             android:hint="@string/comment"
+            android:layout_marginStart="@dimen/margin"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon_comemnt"
             app:layout_constraintTop_toBottomOf="@+id/repayment_date_label">
 
             <EditText
