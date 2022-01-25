@@ -19,4 +19,6 @@
     <string name="delete_question">Долг будет удален. Вы уверены?</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="select_due_date">Выберите дату взятия долга</string>
+    <string name="select_repayment_date">Выберите дату возврата долга</string>
 </resources>

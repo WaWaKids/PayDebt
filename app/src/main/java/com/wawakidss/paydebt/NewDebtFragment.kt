@@ -12,15 +12,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.wawakidss.paydebt.data.Debt
 import com.wawakidss.paydebt.databinding.FragmentNewDebtBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NewDebtFragment : Fragment() {
 
     private lateinit var binding: FragmentNewDebtBinding
     private val args: NewDebtFragmentArgs by navArgs()
     private lateinit var debt: Debt
+    private val materialDatePicker = MaterialDatePicker.Builder.datePicker()
 
     private val viewModel: DebtsViewModel by activityViewModels {
         DebtsViewModelFactory(
@@ -42,6 +46,26 @@ class NewDebtFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val id = args.debtId
+        binding.dueDate.setOnClickListener {
+            materialDatePicker.setTitleText(R.string.select_due_date)
+            val picker = materialDatePicker.build()
+            picker.show(childFragmentManager, "tag")
+            picker.addOnPositiveButtonClickListener {
+                val formatter = SimpleDateFormat("dd/MM/yyyy")
+                binding.dueDate.setText(formatter.format(Date(it)))
+            }
+        }
+
+        binding.repaymentDate.setOnClickListener {
+            materialDatePicker.setTitleText(R.string.select_due_date)
+            val picker = materialDatePicker.build()
+            picker.show(childFragmentManager, "tag")
+            picker.addOnPositiveButtonClickListener {
+                val formatter = SimpleDateFormat("dd/MM/yyyy")
+                binding.repaymentDate.setText(formatter.format(Date(it)))
+            }
+        }
+
         if (id > 0) {
             viewModel.retrieveDebt(id).observe(this.viewLifecycleOwner) { selectedItem ->
                 debt = selectedItem
@@ -75,7 +99,6 @@ class NewDebtFragment : Fragment() {
         } else {
             Toast.makeText(this.context, getString(R.string.entry_invalid), Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun isEntryValid() : Boolean{
