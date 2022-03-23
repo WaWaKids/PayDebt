@@ -7,6 +7,7 @@ import kotlinx.coroutines.launch
 
 class DebtsViewModel(private val debtDao: DebtDao) : ViewModel() {
 
+    private val debtInteractor: DebtInteractor = DebtInteractorImpl(DebtRepositoryImpl(debtDao))
     val allDebts: LiveData<List<Debt>> = debtDao.getDebts().asLiveData()
 
     fun addNewItem(name: String, ownership: Int, debtObject: String, dueDate: String, repaymentDate: String, comment: String) {
@@ -27,7 +28,7 @@ class DebtsViewModel(private val debtDao: DebtDao) : ViewModel() {
 
     private fun insertDebt(debt: Debt) {
         viewModelScope.launch {
-            debtDao.insert(debt)
+            debtInteractor.insertDebt(debt)
         }
     }
 
@@ -38,7 +39,7 @@ class DebtsViewModel(private val debtDao: DebtDao) : ViewModel() {
     }
 
     fun retrieveDebt(id: Int): LiveData<Debt> {
-        return debtDao.getDebt(id).asLiveData()
+        return debtInteractor.retrieveDebt(id)
     }
 
     fun updateItem(
@@ -50,35 +51,15 @@ class DebtsViewModel(private val debtDao: DebtDao) : ViewModel() {
         repaymentDate: String,
         comment: String
     ) {
-        val updatedItem = getUpdatedDebtEntry(id, name, ownership, debtObject, dueDate, repaymentDate, comment)
-        viewModelScope.launch {
-            debtDao.update(updatedItem)
-        }
-    }
 
-    private fun getUpdatedDebtEntry(
-        id: Int,
-        name: String,
-        ownership: Int,
-        debtObject: String,
-        dueDate: String,
-        repaymentDate: String,
-        comment: String
-    ): Debt {
-        return Debt(
-            id = id,
-            name = name,
-            ownership = ownership,
-            debtObject = debtObject,
-            dueDate = dueDate,
-            repaymentDate = repaymentDate,
-            comment = comment
-        )
+        viewModelScope.launch {
+            debtInteractor.updateItem(id, name, ownership, debtObject, dueDate, repaymentDate, comment)
+        }
     }
 
     fun deleteItem(debt: Debt) {
         viewModelScope.launch {
-            debtDao.delete(debt)
+            debtInteractor.deleteItem(debt)
         }
     }
 
