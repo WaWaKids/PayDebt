@@ -1,13 +1,14 @@
-package com.wawakidss.paydebt
+package com.wawakidss.paydebt.presentation.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.wawakidss.paydebt.R
 import com.wawakidss.paydebt.databinding.FragmentDebtListBinding
 
 
@@ -15,16 +16,12 @@ class DebtListFragment : Fragment() {
 
     private lateinit var binding: FragmentDebtListBinding
 
-    private val viewModel: DebtsViewModel by activityViewModels {
-        DebtsViewModelFactory(
-            (activity?.application as PayDebtApplication).database.debtDao()
-        )
-    }
+    private val viewModel: DebtViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDebtListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,7 +32,9 @@ class DebtListFragment : Fragment() {
         val adapter = DebtListAdapter {
 
             this.findNavController().navigate(
-                DebtListFragmentDirections.actionDebtListFragmentToNewDebtFragment(getString(R.string.debt_details_title), it.id)
+                DebtListFragmentDirections.actionDebtListFragmentToNewDebtFragment(getString(
+                    R.string.debt_details_title
+                ), it.id)
             )
         }
 
@@ -50,10 +49,11 @@ class DebtListFragment : Fragment() {
 
 
         binding.floatingActionButton.setOnClickListener {
-            this.findNavController().navigate(DebtListFragmentDirections.actionDebtListFragmentToNewDebtFragment(
-                getString(R.string.add_fragment_title), -1))
+            this.findNavController().navigate(
+                DebtListFragmentDirections.actionDebtListFragmentToNewDebtFragment(
+                    getString(R.string.add_fragment_title), -1
+                )
+            )
         }
     }
-
-
 }

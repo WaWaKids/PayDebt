@@ -1,4 +1,4 @@
-package com.wawakidss.paydebt
+package com.wawakidss.paydebt.presentation.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,21 +6,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.wawakidss.paydebt.data.Debt
+import com.wawakidss.paydebt.R
 import com.wawakidss.paydebt.databinding.DebtListItemBinding
+import com.wawakidss.paydebt.domain.DebtEntity
 
 
-class DebtListAdapter(private val onDebtClicked: (Debt) -> Unit)
-    : ListAdapter<Debt, DebtListAdapter.DebtViewHolder>(DiffCallback) {
+class DebtListAdapter(private val onDebtClicked: (DebtEntity) -> Unit)
+    : ListAdapter<DebtEntity, DebtListAdapter.DebtViewHolder>(DiffCallback) {
 
     class DebtViewHolder(private var binding: DebtListItemBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(debt: Debt, context: Context) {
-                binding.itemName.text = debt.name
-                if (debt.ownership == 1) binding.debtOwnership.text = context.getString(R.string.i_owe_him)
+            fun bind(debtEntity: DebtEntity, context: Context) {
+                binding.itemName.text = debtEntity.name
+                if (debtEntity.ownership == 1) binding.debtOwnership.text = context.getString(R.string.i_owe_him)
                 else binding.debtOwnership.text = context.getString(R.string.owes_to_me)
-                binding.objectOfDebt.text = debt.debtObject
+                binding.objectOfDebt.text = debtEntity.debtObject
             }
 
     }
@@ -44,12 +45,12 @@ class DebtListAdapter(private val onDebtClicked: (Debt) -> Unit)
     }
 
     companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<Debt>() {
-            override fun areItemsTheSame(oldItem: Debt, newItem: Debt): Boolean {
+        private val DiffCallback = object : DiffUtil.ItemCallback<DebtEntity>() {
+            override fun areItemsTheSame(oldItem: DebtEntity, newItem: DebtEntity): Boolean {
                 return oldItem === newItem
             }
 
-            override fun areContentsTheSame(oldItem: Debt, newItem: Debt): Boolean {
+            override fun areContentsTheSame(oldItem: DebtEntity, newItem: DebtEntity): Boolean {
                 return oldItem.name == newItem.name && oldItem.debtObject == newItem.debtObject
             }
         }

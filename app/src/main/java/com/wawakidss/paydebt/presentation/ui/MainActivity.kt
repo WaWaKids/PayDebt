@@ -1,4 +1,4 @@
-package com.wawakidss.paydebt
+package com.wawakidss.paydebt.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.wawakidss.paydebt.R
 
 class MainActivity : AppCompatActivity() {
 

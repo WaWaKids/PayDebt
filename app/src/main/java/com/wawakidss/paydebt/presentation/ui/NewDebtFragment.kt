@@ -1,4 +1,4 @@
-package com.wawakidss.paydebt
+package com.wawakidss.paydebt.presentation.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -9,13 +9,14 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.wawakidss.paydebt.data.Debt
+import com.wawakidss.paydebt.R
 import com.wawakidss.paydebt.databinding.FragmentNewDebtBinding
+import com.wawakidss.paydebt.domain.DebtEntity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,14 +24,9 @@ class NewDebtFragment : Fragment() {
 
     private lateinit var binding: FragmentNewDebtBinding
     private val args: NewDebtFragmentArgs by navArgs()
-    private lateinit var debt: Debt
+    private lateinit var debt: DebtEntity
     private val materialDatePicker = MaterialDatePicker.Builder.datePicker()
-
-    private val viewModel: DebtsViewModel by activityViewModels {
-        DebtsViewModelFactory(
-            (activity?.application as PayDebtApplication).database.debtDao()
-        )
-    }
+    private val viewModel: DebtViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +42,27 @@ class NewDebtFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val id = args.debtId
+        if (id > 0) {
+            viewModel.retrieveDebt(id).observe(this.viewLifecycleOwner) { selectedItem ->
+                debt = selectedItem
+                bind(debt)
+                binding.saveAction.setOnClickListener {
+                    if (updateItem())
+                        findNavController().navigateUp()
+                    else
+                        Toast.makeText(this.context, getString(R.string.entry_invalid), Toast.LENGTH_SHORT).show()
+                }
+                binding.deleteAction.setOnClickListener { showConfirmationDialog() }
+            }
+        } else {
+            binding.saveAction.setOnClickListener{
+                if (addNewDebt())
+                    findNavController().navigateUp()
+                else
+                    Toast.makeText(this.context, getString(R.string.entry_invalid), Toast.LENGTH_SHORT).show()
+            }
+        }
+
         binding.dueDate.setOnClickListener {
             materialDatePicker.setTitleText(R.string.select_due_date)
             val picker = materialDatePicker.build()
@@ -65,16 +82,6 @@ class NewDebtFragment : Fragment() {
                 binding.repaymentDate.setText(formatter.format(Date(it)))
             }
         }
-
-        if (id > 0) {
-            viewModel.retrieveDebt(id).observe(this.viewLifecycleOwner) { selectedItem ->
-                debt = selectedItem
-                bind(debt) }
-            } else {
-            binding.saveAction.setOnClickListener{
-                this.addNewDebt()
-            }
-        }
     }
 
     override fun onDestroyView() {
@@ -84,59 +91,48 @@ class NewDebtFragment : Fragment() {
         inputMethodManager.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
     }
 
-    private fun addNewDebt() {
-        if (isEntryValid()) {
-            viewModel.addNewItem(
-                binding.name.text.toString(),
-                if (binding.optionIOweTo.isChecked) 1 else 0,
-                binding.objectOfDebt.text.toString(),
-                binding.dueDate.text.toString(),
-                binding.repaymentDate.text.toString(),
-                binding.comment.text.toString()
+    private fun addNewDebt(): Boolean {
+        with(binding) {
+            return viewModel.insertDebt(
+                DebtEntity(
+                    name = name.text.toString(),
+                    ownership = if (optionIOweTo.isChecked) 1 else 0,
+                    debtObject = objectOfDebt.text.toString(),
+                    dueDate = dueDate.text.toString(),
+                    repaymentDate = repaymentDate.text.toString(),
+                    comment = comment.text.toString()
+                )
             )
-            val action = NewDebtFragmentDirections.actionNewDebtFragmentToDebtListFragment()
-            findNavController().navigate(action)
-        } else {
-            Toast.makeText(this.context, getString(R.string.entry_invalid), Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    private fun bind(debtEntity: DebtEntity) {
+        with(binding) {
+            name.setText(debtEntity.name, TextView.BufferType.SPANNABLE)
+            if (debtEntity.ownership == 1) debtOption.check(R.id.option_i_owe_to)
+            objectOfDebt.setText(debtEntity.debtObject)
+            binding.dueDate.setText(debtEntity.dueDate)
+            binding.repaymentDate.setText(debtEntity.repaymentDate)
+            binding.comment.setText(debtEntity.comment)
         }
     }
 
-    private fun isEntryValid() : Boolean{
-        return viewModel.isEntryValid(
-            binding.name.text.toString(),
-            binding.objectOfDebt.text.toString()
-        )
-    }
-
-    private fun bind(debt: Debt) {
-        binding.apply {
-            name.setText(debt.name, TextView.BufferType.SPANNABLE)
-            if (debt.ownership == 1) debtOption.check(R.id.option_i_owe_to)
-            objectOfDebt.setText(debt.debtObject)
-            binding.dueDate.setText(debt.dueDate)
-            binding.repaymentDate.setText(debt.repaymentDate)
-            binding.comment.setText(debt.comment)
-            saveAction.setOnClickListener { updateItem() }
-            deleteAction.setOnClickListener { showConfirmationDialog() }
-        }
-    }
-
-    private fun updateItem() {
-        if (isEntryValid()) {
-            viewModel.updateItem(
-                this.args.debtId,
-                binding.name.text.toString(),
-                if (binding.optionIOweTo.isChecked) 1 else 0,
-                binding.objectOfDebt.text.toString(),
-                binding.dueDate.text.toString(),
-                binding.repaymentDate.text.toString(),
-                binding.comment.text.toString()
-            )
-
-            findNavController().navigate(
-                NewDebtFragmentDirections.actionNewDebtFragmentToDebtListFragment()
+    private fun updateItem(): Boolean{
+        with(binding) {
+            return viewModel.updateItem(
+                DebtEntity(
+                    this@NewDebtFragment.args.debtId,
+                    name.text.toString(),
+                    if (optionIOweTo.isChecked) 1 else 0,
+                    objectOfDebt.text.toString(),
+                    dueDate.text.toString(),
+                    repaymentDate.text.toString(),
+                    comment.text.toString()
+                )
             )
         }
+
     }
 
     private fun showConfirmationDialog() {
@@ -146,13 +142,9 @@ class NewDebtFragment : Fragment() {
             .setCancelable(false)
             .setNegativeButton(getString(R.string.no)) { _, _ -> }
             .setPositiveButton(getString(R.string.yes)) { _, _ ->
-                deleteItem()
+                viewModel.deleteItem(debt)
+                findNavController().navigateUp()
             }
             .show()
-    }
-
-    private fun deleteItem() {
-        viewModel.deleteItem(debt)
-        findNavController().navigateUp()
     }
 }
