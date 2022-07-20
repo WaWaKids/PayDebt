@@ -6,7 +6,7 @@
     <string name="due_date">Debt\'s due date</string>
     <string name="repayment_date">Repayment date</string>
     <string name="comment">Comment</string>
-    <string name="object_of_debt">Object of debt</string>
+    <string name="object_of_debt">Object of debtEntity</string>
     <string name="debts_list_title">List of Debts</string>
     <string name="add_fragment_title">Add Debt</string>
     <string name="edit_fragment_title">Edit Debt</string>
