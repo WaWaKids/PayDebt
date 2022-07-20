@@ -6,7 +6,7 @@
     <string name="due_date">Debt\'s due date</string>
     <string name="repayment_date">Repayment date</string>
     <string name="comment">Comment</string>
-    <string name="object_of_debt">Object of debt</string>
+    <string name="object_of_debt">Object of debtEntity</string>
     <string name="debts_list_title">List of Debts</string>
     <string name="add_fragment_title">Add Debt</string>
     <string name="edit_fragment_title">Edit Debt</string>
@@ -15,9 +15,9 @@
     <string name="delete">Delete</string>
     <string name="i_owe_him">I owe him</string>
     <string name="entry_invalid">Please, enter the name and object of debt</string>
-    <string name="delete_question">The debt will be deleted. Are you sure?</string>
+    <string name="delete_question">The debtEntity will be deleted. Are you sure?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="select_due_date">Select debt\'s due date</string>
-    <string name="select_repayment_date">Select debt\'s repayment date</string>
+    <string name="select_due_date">Select debtEntity\'s due date</string>
+    <string name="select_repayment_date">Select debtEntity\'s repayment date</string>
 </resources>
