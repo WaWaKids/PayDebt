@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_debt_list">
         <action
             android:id="@+id/action_debtListFragment_to_NewDebtFragment"
-            app:destination="@id/debt_fragment"/>
+            app:destination="@id/debt_fragment"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@anim/nav_default_enter_anim"/>
 
     </fragment>
 
@@ -27,9 +31,6 @@
         <argument
             android:name="debt_id"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_NewDebtFragment_to_DebtListFragment"
-            app:destination="@id/item_list_fragment"/>
     </fragment>
 
 </navigation>
