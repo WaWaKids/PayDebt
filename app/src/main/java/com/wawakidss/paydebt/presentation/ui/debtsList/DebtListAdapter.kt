@@ -18,10 +18,12 @@ class DebtListAdapter(private val onDebtClicked: (DebtEntity) -> Unit)
         : RecyclerView.ViewHolder(binding.root) {
 
             fun bind(debtEntity: DebtEntity, context: Context) {
-                binding.itemName.text = debtEntity.name
-                if (debtEntity.ownership == 1) binding.debtOwnership.text = context.getString(R.string.i_owe_him)
-                else binding.debtOwnership.text = context.getString(R.string.owes_to_me)
-                binding.objectOfDebt.text = debtEntity.debtObject
+                with(binding) {
+                    itemName.text = debtEntity.name
+                    debtOwnership.text = if (debtEntity.ownership == 1) context.getString(R.string.i_owe_him)
+                    else  context.getString(R.string.owes_to_me)
+                    objectOfDebt.text = debtEntity.debtObject
+                }
             }
 
     }

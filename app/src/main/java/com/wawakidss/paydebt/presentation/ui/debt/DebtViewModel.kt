@@ -12,7 +12,6 @@ import javax.inject.Inject
 class DebtViewModel @Inject constructor(private val interactor: DebtInteractor) : ViewModel() {
 
     private val dispatcher = Dispatchers.IO
-
     lateinit var debt: DebtEntity
 
     fun insertDebt(debt: DebtEntity): Boolean {
