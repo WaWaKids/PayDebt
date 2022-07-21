@@ -1,15 +1,15 @@
-package com.wawakidss.paydebt.presentation.ui.debt
+package com.wawakidss.paydebt.presentation.viewModels
 
 import androidx.lifecycle.*
-import com.wawakidss.paydebt.data.DebtInteractor
-import com.wawakidss.paydebt.domain.DebtEntity
+import com.wawakidss.paydebt.data.DebtEntity
+import com.wawakidss.paydebt.domain.DebtUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DebtViewModel @Inject constructor(private val interactor: DebtInteractor) : ViewModel() {
+class DebtViewModel @Inject constructor(private val useCases: DebtUseCases) : ViewModel() {
 
     private val dispatcher = Dispatchers.IO
     lateinit var debt: DebtEntity
@@ -17,7 +17,7 @@ class DebtViewModel @Inject constructor(private val interactor: DebtInteractor) 
     fun insertDebt(debt: DebtEntity): Boolean {
         return if (isEntryValid(debt.name, debt.debtObject)) {
             viewModelScope.launch(dispatcher) {
-                interactor.insertDebt(debt)
+                useCases.insertDebt(debt)
             }
             true
         } else false
@@ -30,13 +30,13 @@ class DebtViewModel @Inject constructor(private val interactor: DebtInteractor) 
     }
 
     fun retrieveDebt(id: Int): LiveData<DebtEntity> {
-        return interactor.retrieveDebt(id).asLiveData()
+        return useCases.retrieveDebt(id).asLiveData()
     }
 
     fun updateItem(debt: DebtEntity) : Boolean {
         return if (isEntryValid(debt.name, debt.debtObject)) {
             viewModelScope.launch(dispatcher) {
-                interactor.updateItem(debt)
+                useCases.updateItem(debt)
             }
             true
         } else false
@@ -44,7 +44,7 @@ class DebtViewModel @Inject constructor(private val interactor: DebtInteractor) 
 
     fun deleteItem(debt: DebtEntity) {
         viewModelScope.launch(dispatcher) {
-            interactor.deleteItem(debt)
+            useCases.deleteItem(debt)
         }
     }
 }

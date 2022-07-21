@@ -1,4 +1,4 @@
-package com.wawakidss.paydebt.domain
+package com.wawakidss.paydebt.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

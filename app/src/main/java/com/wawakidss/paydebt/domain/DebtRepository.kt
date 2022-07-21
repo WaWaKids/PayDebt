@@ -1,5 +1,6 @@
 package com.wawakidss.paydebt.domain
 
+import com.wawakidss.paydebt.data.DebtEntity
 import kotlinx.coroutines.flow.Flow
 
 interface DebtRepository {

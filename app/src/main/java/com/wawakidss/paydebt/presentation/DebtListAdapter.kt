@@ -1,4 +1,4 @@
-package com.wawakidss.paydebt.presentation.ui.debtsList
+package com.wawakidss.paydebt.presentation
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.wawakidss.paydebt.R
 import com.wawakidss.paydebt.databinding.DebtListItemBinding
-import com.wawakidss.paydebt.domain.DebtEntity
+import com.wawakidss.paydebt.data.DebtEntity
 
 
 class DebtListAdapter(private val onDebtClicked: (DebtEntity) -> Unit)

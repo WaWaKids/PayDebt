@@ -1,11 +1,10 @@
-package com.wawakidss.paydebt.domain.db
+package com.wawakidss.paydebt.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.wawakidss.paydebt.domain.DebtEntity
-import javax.inject.Inject
+import com.wawakidss.paydebt.data.DebtEntity
 import javax.inject.Singleton
 
 @Singleton

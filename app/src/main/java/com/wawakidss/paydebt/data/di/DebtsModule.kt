@@ -1,10 +1,9 @@
-package com.wawakidss.paydebt.di
+package com.wawakidss.paydebt.data.di
 
-import com.wawakidss.paydebt.data.DebtInteractor
-import com.wawakidss.paydebt.data.DebtInteractorImpl
+import com.wawakidss.paydebt.domain.DebtUseCases
 import com.wawakidss.paydebt.data.DebtRepositoryImpl
 import com.wawakidss.paydebt.domain.DebtRepository
-import com.wawakidss.paydebt.domain.db.DebtRoomDatabase
+import com.wawakidss.paydebt.data.db.DebtRoomDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,6 +18,6 @@ class DebtsModule {
         DebtRepositoryImpl(database.debtDao())
 
     @Provides
-    fun provideInteractor(repository: DebtRepositoryImpl): DebtInteractor =
-        DebtInteractorImpl(repository)
+    fun provideUseCases(repository: DebtRepositoryImpl): DebtUseCases =
+        DebtUseCases(repository)
 }

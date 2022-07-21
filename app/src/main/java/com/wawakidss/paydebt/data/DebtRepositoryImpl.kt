@@ -1,8 +1,7 @@
 package com.wawakidss.paydebt.data
 
-import com.wawakidss.paydebt.domain.DebtEntity
 import com.wawakidss.paydebt.domain.DebtRepository
-import com.wawakidss.paydebt.domain.db.DebtDao
+import com.wawakidss.paydebt.data.db.DebtDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

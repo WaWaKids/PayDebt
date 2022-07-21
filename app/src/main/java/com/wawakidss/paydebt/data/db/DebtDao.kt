@@ -1,7 +1,7 @@
-package com.wawakidss.paydebt.domain.db
+package com.wawakidss.paydebt.data.db
 
 import androidx.room.*
-import com.wawakidss.paydebt.domain.DebtEntity
+import com.wawakidss.paydebt.data.DebtEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

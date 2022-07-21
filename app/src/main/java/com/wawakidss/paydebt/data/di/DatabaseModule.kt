@@ -1,9 +1,9 @@
-package com.wawakidss.paydebt.di
+package com.wawakidss.paydebt.data.di
 
 import android.content.Context
 import com.wawakidss.paydebt.App
-import com.wawakidss.paydebt.domain.db.DebtDao
-import com.wawakidss.paydebt.domain.db.DebtRoomDatabase
+import com.wawakidss.paydebt.data.db.DebtDao
+import com.wawakidss.paydebt.data.db.DebtRoomDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

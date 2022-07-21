@@ -1,4 +1,4 @@
-package com.wawakidss.paydebt.presentation.ui.debtsList
+package com.wawakidss.paydebt.presentation.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wawakidss.paydebt.R
 import com.wawakidss.paydebt.databinding.FragmentDebtListBinding
+import com.wawakidss.paydebt.presentation.DebtListAdapter
+import com.wawakidss.paydebt.presentation.viewModels.DebtsListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,9 +35,11 @@ class DebtListFragment : Fragment() {
         val adapter = DebtListAdapter {
 
             this.findNavController().navigate(
-                DebtListFragmentDirections.actionDebtListFragmentToNewDebtFragment(getString(
-                    R.string.debt_details_title
-                ), it.id)
+                DebtListFragmentDirections.actionDebtListFragmentToNewDebtFragment(
+                    getString(
+                        R.string.debt_details_title
+                    ), it.id
+                )
             )
         }
 

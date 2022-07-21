@@ -1,4 +1,4 @@
-package com.wawakidss.paydebt.presentation.ui.debt
+package com.wawakidss.paydebt.presentation.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -16,7 +16,8 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.wawakidss.paydebt.R
 import com.wawakidss.paydebt.databinding.FragmentDebtBinding
-import com.wawakidss.paydebt.domain.DebtEntity
+import com.wawakidss.paydebt.data.DebtEntity
+import com.wawakidss.paydebt.presentation.viewModels.DebtViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
