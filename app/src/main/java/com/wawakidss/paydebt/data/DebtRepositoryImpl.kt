@@ -1,25 +1,35 @@
 package com.wawakidss.paydebt.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 import com.wawakidss.paydebt.domain.DebtEntity
 import com.wawakidss.paydebt.domain.DebtRepository
 import com.wawakidss.paydebt.domain.db.DebtDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class DebtRepositoryImpl(val dao: DebtDao) : DebtRepository {
+class DebtRepositoryImpl @Inject constructor(val dao: DebtDao) : DebtRepository {
+
+    private val dispatcher = Dispatchers.IO
+
+    override fun retrieveDebt(id: Int) = dao.getDebt(id)
+
+    override fun retreiveAllDebts() = dao.getDebts()
+
     override suspend fun insertDebt(debtEntity: DebtEntity) {
-        dao.insert(debtEntity)
-    }
-
-    override fun retrieveDebt(id: Int): LiveData<DebtEntity> {
-        return dao.getDebt(id).asLiveData()
+        withContext(dispatcher) {
+            dao.insert(debtEntity)
+        }
     }
 
     override suspend fun updateItem(debt: DebtEntity) {
-        dao.update(debt)
+        withContext(dispatcher) {
+            dao.update(debt)
+        }
     }
 
     override suspend fun deleteItem(debtEntity: DebtEntity) {
-        dao.delete(debtEntity)
+        withContext(dispatcher) {
+            dao.delete(debtEntity)
+        }
     }
 }

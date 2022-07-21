@@ -1,21 +1,19 @@
-package com.wawakidss.paydebt.presentation.ui
+package com.wawakidss.paydebt.presentation.ui.debt
 
-import android.app.Application
 import androidx.lifecycle.*
 import com.wawakidss.paydebt.data.DebtInteractor
-import com.wawakidss.paydebt.data.DebtInteractorImpl
-import com.wawakidss.paydebt.data.DebtRepositoryImpl
 import com.wawakidss.paydebt.domain.DebtEntity
-import com.wawakidss.paydebt.domain.db.DebtRoomDatabase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DebtViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class DebtViewModel @Inject constructor(private val interactor: DebtInteractor) : ViewModel() {
 
-    private val dao = DebtRoomDatabase.getDatabase(application).debtDao()
     private val dispatcher = Dispatchers.IO
-    private val interactor: DebtInteractor = DebtInteractorImpl(DebtRepositoryImpl(dao))
-    val allDebts: LiveData<List<DebtEntity>> = dao.getDebts().asLiveData()
+
+    lateinit var debt: DebtEntity
 
     fun insertDebt(debt: DebtEntity): Boolean {
         return if (isEntryValid(debt.name, debt.debtObject)) {
@@ -33,7 +31,7 @@ class DebtViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun retrieveDebt(id: Int): LiveData<DebtEntity> {
-        return interactor.retrieveDebt(id)
+        return interactor.retrieveDebt(id).asLiveData()
     }
 
     fun updateItem(debt: DebtEntity) : Boolean {

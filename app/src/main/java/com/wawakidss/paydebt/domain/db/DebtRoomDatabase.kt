@@ -5,7 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.wawakidss.paydebt.domain.DebtEntity
+import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 @Database(entities = [DebtEntity::class], version = 1, exportSchema = false)
 abstract class DebtRoomDatabase : RoomDatabase() {
 

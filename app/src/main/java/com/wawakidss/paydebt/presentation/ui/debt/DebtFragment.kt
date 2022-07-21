@@ -1,4 +1,4 @@
-package com.wawakidss.paydebt.presentation.ui
+package com.wawakidss.paydebt.presentation.ui.debt
 
 import android.content.Context
 import android.os.Bundle
@@ -15,16 +15,17 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.wawakidss.paydebt.R
-import com.wawakidss.paydebt.databinding.FragmentNewDebtBinding
+import com.wawakidss.paydebt.databinding.FragmentDebtBinding
 import com.wawakidss.paydebt.domain.DebtEntity
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NewDebtFragment : Fragment() {
+@AndroidEntryPoint
+class DebtFragment : Fragment() {
 
-    private lateinit var binding: FragmentNewDebtBinding
-    private val args: NewDebtFragmentArgs by navArgs()
-    private lateinit var debt: DebtEntity
+    private lateinit var binding: FragmentDebtBinding
+    private val args: DebtFragmentArgs by navArgs()
     private val materialDatePicker = MaterialDatePicker.Builder.datePicker()
     private val viewModel: DebtViewModel by viewModels()
 
@@ -33,7 +34,7 @@ class NewDebtFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNewDebtBinding.inflate(inflater, container, false)
+        binding = FragmentDebtBinding.inflate(inflater, container, false)
         if (args.debtId == -1) binding.deleteAction.visibility = View.GONE
         return binding.root
     }
@@ -44,8 +45,8 @@ class NewDebtFragment : Fragment() {
         val id = args.debtId
         if (id > 0) {
             viewModel.retrieveDebt(id).observe(this.viewLifecycleOwner) { selectedItem ->
-                debt = selectedItem
-                bind(debt)
+                viewModel.debt = selectedItem
+                bind(viewModel.debt)
                 binding.saveAction.setOnClickListener {
                     if (updateItem())
                         findNavController().navigateUp()
@@ -122,7 +123,7 @@ class NewDebtFragment : Fragment() {
         with(binding) {
             return viewModel.updateItem(
                 DebtEntity(
-                    this@NewDebtFragment.args.debtId,
+                    this@DebtFragment.args.debtId,
                     name.text.toString(),
                     if (optionIOweTo.isChecked) 1 else 0,
                     objectOfDebt.text.toString(),
@@ -142,7 +143,7 @@ class NewDebtFragment : Fragment() {
             .setCancelable(false)
             .setNegativeButton(getString(R.string.no)) { _, _ -> }
             .setPositiveButton(getString(R.string.yes)) { _, _ ->
-                viewModel.deleteItem(debt)
+                viewModel.deleteItem(viewModel.debt)
                 findNavController().navigateUp()
             }
             .show()

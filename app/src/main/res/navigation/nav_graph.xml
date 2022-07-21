@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/item_list_fragment"
-        android:name="com.wawakidss.paydebt.presentation.ui.DebtListFragment"
+        android:name="com.wawakidss.paydebt.presentation.ui.debtsList.DebtListFragment"
         android:label="@string/debts_list_title"
         tools:layout="@layout/fragment_debt_list">
         <action
@@ -22,9 +22,9 @@
 
     <fragment
         android:id="@+id/debt_fragment"
-        android:name="com.wawakidss.paydebt.presentation.ui.NewDebtFragment"
+        android:name="com.wawakidss.paydebt.presentation.ui.debt.DebtFragment"
         android:label="{title}"
-        tools:layout="@layout/fragment_new_debt">
+        tools:layout="@layout/fragment_debt">
         <argument
             android:name="title"
             app:argType="string" />

@@ -1,13 +1,14 @@
 package com.wawakidss.paydebt.domain
 
-import androidx.lifecycle.LiveData
-import com.wawakidss.paydebt.domain.DebtEntity
+import kotlinx.coroutines.flow.Flow
 
 interface DebtRepository {
 
-    suspend fun insertDebt(debtEntity: DebtEntity)
+    fun retreiveAllDebts(): Flow<List<DebtEntity>>
 
-    fun retrieveDebt(id: Int): LiveData<DebtEntity>
+    fun retrieveDebt(id: Int): Flow<DebtEntity>
+
+    suspend fun insertDebt(debtEntity: DebtEntity)
 
     suspend fun updateItem(debt: DebtEntity)
 

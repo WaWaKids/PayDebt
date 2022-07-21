@@ -1,4 +1,4 @@
-package com.wawakidss.paydebt.presentation.ui
+package com.wawakidss.paydebt.presentation.ui.debtsList
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,13 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wawakidss.paydebt.R
 import com.wawakidss.paydebt.databinding.FragmentDebtListBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DebtListFragment : Fragment() {
 
     private lateinit var binding: FragmentDebtListBinding
 
-    private val viewModel: DebtViewModel by viewModels()
+    private val viewModel: DebtsListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

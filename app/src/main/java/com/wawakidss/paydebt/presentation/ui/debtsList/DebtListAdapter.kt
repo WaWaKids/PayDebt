@@ -1,4 +1,4 @@
-package com.wawakidss.paydebt.presentation.ui
+package com.wawakidss.paydebt.presentation.ui.debtsList
 
 import android.content.Context
 import android.view.LayoutInflater
